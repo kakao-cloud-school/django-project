@@ -1,0 +1,79 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - mediafiles:/media
+      - staticfiles:/static
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./config/letsencrypt:/letsencrypt
+      # SSL certificates
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - web
+    networks:
+      - webnet
+
+  django_project:
+    image: sod723/django_project:0.1
+    environment:
+      PRODUCTION: "True"
+      DJANGO_SECRET_KEY_FILE: /run/secrets/django_secret_key
+      MYSQL_USER_FILE: /run/secrets/mysql_user
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      EMAIL_PASSWORD_FILE: /run/secrets/email_password
+    secrets:
+      - django_secret_key
+      - mysql_user
+      - mysql_password
+      - email_password
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - db
+    volumes:
+      - mediafiles:/src/media
+      - staticfiles:/src/static
+    command: gunicorn django_project.wsgi -b :8080
+    networks:
+      - webnet
+
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER_FILE: /run/secrets/mysql_user
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_DATABASE: django_project
+    secrets:
+      - mysql_user
+      - mysql_password
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+volumes:
+  staticfiles:
+  mediafiles:
+  mysqldata:
+
+secrets:
+  mysql_user:
+    external: true
+  mysql_password:
+    external: true
+  django_secret_key:
+    external: true
+  email_password:
+    external: true
