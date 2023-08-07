@@ -5,7 +5,7 @@ pipeline{
   }
   environment{
     REPOSITORY = "JoYoungKyung/jenkinshub"
-    DOCKERHUB_CREDENTIALS = credentials(docker_access_token)
+    DOCKERHUB_CREDENTIALS = credentials('docker_access_token')
   }
   stages{
     stage('Checkout') {
