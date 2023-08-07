@@ -1,7 +1,7 @@
 pipeline{
   agent any
   environment{
-    repository = "JoYoungKyung/jenkinshub"
+    REPOSITORY = "JoYoungKyung/jenkinshub"
     DOCKERHUB_CREDENTIALS = credentials(docker_access_token)
   }
   stages{
@@ -12,7 +12,7 @@ pipeline{
     }
     stage('build'){
       steps{
-        sh 'docker build -t $repository:$BUILD_TAG .'
+        sh 'docker build -t $REPOSITORY:$BUILD_TAG .'
       }
     }
     stage('docker login'){
@@ -22,12 +22,12 @@ pipeline{
     }
     stage('docker push'){
       steps{
-        sh 'docker push $repository:${BUILD_TAG}'
+        sh 'docker push $REPOSITORY:${BUILD_TAG}'
       }
     }
     stage('docker pull'){
       steps{
-        sh 'docker pull $repository:${BUILD_TAG}'
+        sh 'docker pull $REPOSITORY:${BUILD_TAG}'
       }
     }
   }
