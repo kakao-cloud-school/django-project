@@ -1,5 +1,5 @@
 # django-mysql-nginx-docker
-Django 3.0 + Mysql 8 + Nginx + Docker
+Django 3.0 + Mysql 8 + Nginx + Docker..
 
 ## Documentation ##
 
