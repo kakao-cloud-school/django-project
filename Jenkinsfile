@@ -12,7 +12,7 @@ pipeline{
     }
     stage('build'){
       steps{
-        sh 'docker build -t $REPOSITORY:$BUILD_TAG .'
+        sh 'docker build -t $REPOSITORY .'
       }
     }
     stage('docker login'){
@@ -22,12 +22,12 @@ pipeline{
     }
     stage('docker push'){
       steps{
-        sh 'docker push $REPOSITORY:${BUILD_TAG}'
+        sh 'docker push $REPOSITORY'
       }
     }
     stage('docker pull'){
       steps{
-        sh 'docker pull $REPOSITORY:${BUILD_TAG}'
+        sh 'docker pull $REPOSITORY'
       }
     }
   }
