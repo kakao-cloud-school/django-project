@@ -4,7 +4,7 @@ pipeline{
         githubPush() // GitHub에 커밋이 발생하면 자동으로 파이프라인 시작
   }
   environment{
-    REPOSITORY = "JoYoungKyung/jenkinshub"
+    REPOSITORY = "joyoungkyung/jenkinshub"
     DOCKERHUB_CREDENTIALS = credentials('docker_access_token')
   }
   stages{
