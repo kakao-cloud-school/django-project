@@ -23,9 +23,8 @@ pipeline {
         stage('Docker Login') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'docker_access_token', variable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
-                        sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                    }
+                    def credentials = credentials('docker_access_token')
+                    sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
                 }
             }
         }
