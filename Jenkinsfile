@@ -10,8 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // GitHub 저장소의 코드를 가져옴
-                checkout scm
+                git branch: 'main', url: 'https://github.com/kakao-cloud-school/django-project.git'
             }
         }
         stage('Build') {
