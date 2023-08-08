@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.30.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: django-project
+  name: django-project
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: django-project
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.30.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/django-project-default: "true"
+        io.kompose.service: django-project
+    spec:
+      containers:
+        - args:
+            - /scripts/wait-for-it.sh
+            - db:3306
+            - -t
+            - "30"
+            - --
+            - /scripts/command-dev.sh
+          image: django-project
+          name: django-project
+          ports:
+            - containerPort: 8080
+              hostPort: 8080
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /src
+              name: django-project-claim0
+            - mountPath: /scripts
+              name: django-project-claim1
+      restartPolicy: Always
+      volumes:
+        - name: django-project-claim0
+          persistentVolumeClaim:
+            claimName: django-project-claim0
+        - name: django-project-claim1
+          persistentVolumeClaim:
+            claimName: django-project-claim1
+status: {}
