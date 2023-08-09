@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: portainer-claim0-pv
+  name: portainer-claim0
   labels:
     type: local
 spec:
@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/str/portainer-claim0-pv"
+    path: "/str/portainer-claim0"
