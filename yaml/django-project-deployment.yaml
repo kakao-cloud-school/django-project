@@ -34,7 +34,7 @@ spec:
             - "30"
             - --
             - /scripts/command-dev.sh
-          image: django-project
+          image: joyoungkyung/jenkinshub
           name: django-project
           ports:
             - containerPort: 8080
