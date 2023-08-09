@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: django-project-claim1-pv
+  name: django-project-claim1
   labels:
     type: local
 spec:
@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/str/django-project-claim1-pv"
+    path: "/str/django-project-claim1"
