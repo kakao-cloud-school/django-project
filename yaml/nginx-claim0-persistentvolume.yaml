@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nginx-claim0-pv
+  name: nginx-claim0
   labels:
     type: local
 spec:
@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/str/nginx-claim0-pv"
+    path: "/str/nginx-claim0"
