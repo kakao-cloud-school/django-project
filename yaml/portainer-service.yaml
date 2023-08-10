@@ -13,8 +13,8 @@ spec:
   ports:
     - name: "9000"
       port: 9000
-      targetPort: 9000
   selector:
     io.kompose.service: portainer
+  type: NodePort
 status:
   loadBalancer: {}
