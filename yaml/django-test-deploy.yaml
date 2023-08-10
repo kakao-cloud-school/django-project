@@ -28,12 +28,12 @@ spec:
     spec:
       containers:
         - args:
-            - ../scripts/wait-for-it.sh
+            - /scripts/wait-for-it.sh
             - db:3306
             - -t
             - "30"
             - --
-            - ../scripts/command-dev.sh
+            - /scripts/command-dev.sh
           image: joyoungkyung/jenkinshub
           name: django-project
           ports:
