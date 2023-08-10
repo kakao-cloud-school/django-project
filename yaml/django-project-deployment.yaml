@@ -42,9 +42,9 @@ spec:
               protocol: TCP
           resources: {}
           volumeMounts:
-            - mountPath: /src
+            - mountPath: ../src
               name: django-project-claim0
-            - mountPath: /scripts
+            - mountPath: ../scripts
               name: django-project-claim1
       restartPolicy: Always
       volumes:
