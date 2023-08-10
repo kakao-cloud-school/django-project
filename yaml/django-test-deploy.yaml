@@ -31,7 +31,6 @@ spec:
             - db:3306
             - -t
             - "30"
-            - --
           image: joyoungkyung/jenkinshub
           name: django-project
           ports:
