@@ -52,7 +52,7 @@ spec:
           persistentVolumeClaim:
             claimName: django-project-claim0
         - name: scripts-volume  # 
-          hostPath:
-            path: /host-mount  # 
+          configMap:
+            name: script-configmap
 status: {}
 
