@@ -38,19 +38,20 @@ spec:
           name: django-project
           ports:
             - containerPort: 8080
+              hostPort: 8080
               protocol: TCP
           resources: {}
           volumeMounts:
-            - mountPath: ../src
+            - mountPath: /src
               name: django-project-claim0
-            - mountPath: ../scripts
-              name: scripts-volume
+            - mountPath: /scripts
+              name: django-project-claim1
       restartPolicy: Always
       volumes:
         - name: django-project-claim0
           persistentVolumeClaim:
             claimName: django-project-claim0
-        - name: scripts-volume
-          hostPath:
-            path: /host-mount
+        - name: django-project-claim1
+          persistentVolumeClaim:
+            claimName: django-project-claim0
 status: {}
