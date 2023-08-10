@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: django-project-claim0
   name: django-project-claim0
   namespace: default
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
