@@ -55,4 +55,3 @@ spec:
           configMap:
             name: script-configmap
 status: {}
-
