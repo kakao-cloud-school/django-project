@@ -6,7 +6,6 @@ data:
   wait-for-it.sh: |
     #!/usr/bin/env bash
     #   Use this script to test if a given TCP host/port are available
-    chmod +x /scripts/wait-for-it.sh
     cmdname=$(basename $0)
     
     echoerr() { if [[ $QUIET -ne 1 ]]; then echo "$@" 1>&2; fi }
@@ -183,7 +182,6 @@ data:
     fi  
   command-dev.sh: |
     #!/bin/sh
-    chmod +x /scripts/wait-for-it.sh
     python manage.py migrate
     python manage.py loaddata dev
     python manage.py runserver 0.0.0.0:8080
