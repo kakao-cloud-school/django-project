@@ -6,4 +6,5 @@ ADD /config/requirements.txt /config/
 RUN pip install -r /config/requirements.txt
 
 ADD ./src /src
+ADD ./scripts /scripts
 WORKDIR /src
