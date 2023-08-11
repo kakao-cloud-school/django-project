@@ -10,9 +10,6 @@ metadata:
   name: django-project
   namespace: default
 spec:
-  securityContext:
-    fsGroup: 0
-    runAsUser: 0
   replicas: 1
   selector:
     matchLabels:
