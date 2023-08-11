@@ -27,8 +27,8 @@ spec:
         io.kompose.service: django-project
     spec:
       containers:
-          command: ["/scripts/wait-for-it.sh"]
-          args: ["db-svc:3306", "-t", "30", "--", "/scripts/command-dev.sh"]
+          command: ["/bin/sh", "-c"]
+          args: ["/scripts/wait-for-it.sh", "db-svc:3306", "-t", "30", "--", "/scripts/command-dev.sh"]
           image: joyoungkyung/jenkinshub
           name: django-project
           ports:
