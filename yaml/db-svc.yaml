@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.30.0 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: django-project
+    io.kompose.service: db
   name: db-svc
   namespace: default
 spec:
@@ -15,7 +15,7 @@ spec:
       port: 3306
       targetPort: 3306
   selector:
-    io.kompose.service: django-project
+    io.kompose.service: db
   type: NodePort
 status:
   loadBalancer: {}
