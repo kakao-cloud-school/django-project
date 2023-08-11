@@ -26,6 +26,9 @@ spec:
         io.kompose.network/django-project-default: "true"
         io.kompose.service: django-project
     spec:
+      securityContext:
+        runAsUser: 0
+        fsGroup: 0
       containers:
         - args:
             - /scripts/wait-for-it.sh
