@@ -17,7 +17,7 @@ DATABASES = {
         'NAME': 'django_project',
         'USER': 'admin',
         'PASSWORD': 'admin',
-        'HOST': 'db',
+        'HOST': 'db', # dv-svc로 변경
         'PORT': 3306,
     }
 }
