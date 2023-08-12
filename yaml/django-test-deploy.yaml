@@ -54,7 +54,5 @@ spec:
         - name: django-project-claim0
           persistentVolumeClaim:
             claimName: django-project-claim0
-        - name: scripts-volume  # 
-          configMap:
-            name: script-configmap
+
 status: {}
